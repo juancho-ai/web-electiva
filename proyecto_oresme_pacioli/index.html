@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oresme & Pacioli | Divulgación Matemática</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <!-- Barra superior y navegación por pestañas -->
+  <header class="topbar">
+    <div class="brand" onclick="switchTab('tab-1')">
+      <span class="brand-symbol">Φ</span>
+      <div>
+        <h1>Oresme & Pacioli</h1>
+        <p>Matemáticos de la Historia · Divulgación Interactiva</p>
+      </div>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de pestañas">
+      ☰ Pestañas
+    </button>
+
+    <nav class="tab-nav" id="tabNav" role="tablist">
+      <button class="tab-btn active" data-tab="tab-1">1. Inicio</button>
+      <button class="tab-btn" data-tab="tab-2">2. Biografías</button>
+      <button class="tab-btn" data-tab="tab-3">3. Línea de Tiempo</button>
+      <button class="tab-btn" data-tab="tab-4">4. Aportes y Laboratorio</button>
+      <button class="tab-btn" data-tab="tab-5">5. Impacto Hoy</button>
+      <button class="tab-btn" data-tab="tab-6">6. Podcast IA</button>
+      <button class="tab-btn" data-tab="tab-7">7. Juegos</button>
+      <button class="tab-btn" data-tab="tab-8">8. Datos Curiosos</button>
+      <button class="tab-btn" data-tab="tab-9">9. Fuentes APA</button>
+      <button class="tab-btn" data-tab="tab-10">10. Uso de IA</button>
+    </nav>
+  </header>
+
+  <main class="workspace">
+    <!-- PESTAÑA 1: INICIO -->
+    <section id="tab-1" class="tab-panel active">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="pill">Siglos XIV – XVI · Del Movimiento a la Armonía</span>
+          <h2>Nicole Oresme <span class="amp">&</span> Luca Pacioli</h2>
+          <p class="subtitle">
+            Dos mentes brillantes que transformaron la matemática medieval y renacentista: de los primeros gráficos de coordenadas sobre el movimiento a la geometría de la Divina Proporción y la contabilidad moderna.
+          </p>
+          <blockquote class="hero-quote">
+            “Sin matemáticas no se puede penetrar en la filosofía; sin filosofía no se puede penetrar en las matemáticas.” — <strong>Luca Pacioli</strong>
+          </blockquote>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="switchTab('tab-4')">Probar Laboratorio Matemático</button>
+            <button class="btn-secondary" onclick="switchTab('tab-2')">Explorar Biografías →</button>
+          </div>
+        </div>
+
+        <div class="hero-portraits">
+          <figure class="portrait-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Oresme-Nicole.jpg"
+              alt="Miniatura medieval de Nicole Oresme escribiendo en su escritorio"
+            />
+            <figcaption>
+              <strong>Nicole Oresme</strong>
+              <span>Manuscrito medieval · Wikimedia Commons</span>
+            </figcaption>
+          </figure>
+          <figure class="portrait-card gold-border">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/2/23/Jacopo_de%27_Barbari_-_Portrait_of_Fra_Luca_Pacioli_and_an_Unknown_Young_Man_-_WGA1269.jpg"
+              alt="Retrato de Fra Luca Pacioli con poliedro de cristal, pintado por Jacopo de' Barbari (1495)"
+            />
+            <figcaption>
+              <strong>Luca Pacioli</strong>
+              <span>Óleo de Jacopo de' Barbari (1495) · Museo de Capodimonte</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="cards-2col mt-24">
+        <article class="card">
+          <div class="card-badge amber">c. 1320 – 1382 · Francia</div>
+          <h3>Nicole Oresme</h3>
+          <p>Filósofo, economista, astrónomo y matemático normando. Pionero en representar magnitudes variables mediante coordenadas geométricas dos siglos antes de René Descartes.</p>
+        </article>
+        <article class="card">
+          <div class="card-badge gold">c. 1447 – 1517 · Italia</div>
+          <h3>Luca Pacioli</h3>
+          <p>Fraile franciscano y matemático del Renacimiento italiano, amigo de Leonardo da Vinci. Sistematizó la partida doble contable y divulgó la geometría de la proporción áurea.</p>
+        </article>
+      </div>
+      <div class="panel-footer">
+        <button class="btn-primary" onclick="switchTab('tab-2')">Siguiente: Biografías →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 2: BIOGRAFÍAS -->
+    <section id="tab-2" class="tab-panel">
+      <div class="panel-header">
+        <h2>2. Biografías y Contexto Histórico</h2>
+        <p>Selecciona un personaje para explorar su formación, época y hechos fundamentales.</p>
+        <div class="bio-switcher">
+          <button class="bio-tab active" onclick="showBio('oresme', this)">Nicole Oresme (Siglo XIV)</button>
+          <button class="bio-tab" onclick="showBio('pacioli', this)">Luca Pacioli (Siglo XV–XVI)</button>
+        </div>
+      </div>
+
+      <div id="bio-oresme" class="bio-content active">
+        <div class="bio-layout">
+          <figure class="bio-figure">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Oresme-Nicole.jpg"
+              alt="Nicole Oresme trabajando en su tratado"
+            />
+            <figcaption>Nicole Oresme (c. 1320–1382). Miniatura de manuscrito francés del siglo XIV.</figcaption>
+          </figure>
+          <div class="bio-cards">
+            <div class="card">
+              <h3>Origen y Formación</h3>
+              <p>Nació alrededor de <strong>1320 en Allemagne</strong> (hoy Fleury-sur-Orne, Normandía, Francia). Estudió artes y teología en el prestigioso <strong>Colegio de Navarra</strong> en la Universidad de París, donde llegó a ser Gran Maestre en 1356.</p>
+              <p>Su época estuvo marcada por la Guerra de los Cien Años, la Peste Negra y el surgimiento de la física escolástica de los calculadores de Oxford (Merton College).</p>
+            </div>
+            <div class="card">
+              <h3>Trayectoria y Legado Intelectual</h3>
+              <ul class="clean-list">
+                <li><strong>Consejero Real:</strong> Fue tutor y consejero financiero del rey Carlos V de Francia, para quien tradujo obras de Aristóteles al francés, acuñando cientos de términos científicos.</li>
+                <li><strong>Obispo de Lisieux:</strong> Nombrado en 1377, cargo que ocupó hasta su muerte en 1382.</li>
+                <li><strong>Visión Crítica:</strong> Combatió la astrología judiciaria y planteó argumentos matemáticos sobre la posible rotación diaria de la Tierra.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="bio-pacioli" class="bio-content">
+        <div class="bio-layout">
+          <figure class="bio-figure">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/2/23/Jacopo_de%27_Barbari_-_Portrait_of_Fra_Luca_Pacioli_and_an_Unknown_Young_Man_-_WGA1269.jpg"
+              alt="Retrato de Fra Luca Pacioli demostrando un teorema de Euclides"
+            />
+            <figcaption>Fra Luca Pacioli (c. 1447–1517) junto a un rombicuboctaedro suspendido (1495).</figcaption>
+          </figure>
+          <div class="bio-cards">
+            <div class="card">
+              <h3>Origen y Formación</h3>
+              <p>Nació hacia <strong>1447 en Borgo Sansepolcro</strong> (Toscana, Italia), cuna también del pintor y matemático Piero della Francesca, quien fue su primer mentor en geometría y perspectiva.</p>
+              <p>Se trasladó a Venecia como tutor de los hijos de un mercader, donde aprendió a fondo las matemáticas comerciales e ingresó posteriormente a la orden franciscana.</p>
+            </div>
+            <div class="card">
+              <h3>Trayectoria y Amistad con Da Vinci</h3>
+              <ul class="clean-list">
+                <li><strong>Profesor Itinerante:</strong> Enseñó matemáticas en Perugia, Zara, Nápoles, Roma, Milán y Florencia.</li>
+                <li><strong>Colaboración Histórica:</strong> En Milán (1496) trabajó junto a <strong>Leonardo da Vinci</strong>, quien dibujó los 60 poliedros regulares y estrellados para su libro <em>De divina proportione</em>.</li>
+                <li><strong>Imprenta Matemática:</strong> Aprovechó la imprenta de Gutenberg para difundir el álgebra y la aritmética en lengua vernácula (italiano) en lugar de solo latín.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-1')">← Inicio</button>
+        <button class="btn-primary" onclick="switchTab('tab-3')">Siguiente: Línea de Tiempo →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 3: LÍNEA DE TIEMPO -->
+    <section id="tab-3" class="tab-panel">
+      <div class="panel-header">
+        <h2>3. Línea de Tiempo Comparada (1320 – 1517)</h2>
+        <p>Hitos clave en la vida y obra de ambos matemáticos a lo largo de dos siglos.</p>
+      </div>
+
+      <div class="timeline" id="timelineContainer">
+        <div class="tl-item oresme">
+          <span class="tl-year">c. 1320</span>
+          <h4>Nacimiento de Nicole Oresme</h4>
+          <p>Nace en Normandía, Francia, en el seno de una familia humilde antes de ingresar al Colegio de Navarra en París.</p>
+        </div>
+        <div class="tl-item oresme">
+          <span class="tl-year">c. 1350 – 1360</span>
+          <h4>Tractatus de configurationibus qualitatum et motuum</h4>
+          <p>Oresme introduce los ejes de <em>longitudo</em> y <em>latitudo</em> para graficar velocidades y demuestra geométricamente el teorema de la velocidad media.</p>
+        </div>
+        <div class="tl-item oresme">
+          <span class="tl-year">1377 – 1382</span>
+          <h4>Obispo de Lisieux y Fallecimiento</h4>
+          <p>Tras traducir a Aristóteles y escribir sobre economía monetaria (<em>De moneta</em>), fallece en Lisieux el 11 de julio de 1382.</p>
+        </div>
+        <div class="tl-item pacioli">
+          <span class="tl-year">c. 1447</span>
+          <h4>Nacimiento de Luca Pacioli</h4>
+          <p>Nace en Sansepolcro, Italia, en pleno auge del Renacimiento temprano y el comercio mediterráneo.</p>
+        </div>
+        <div class="tl-item pacioli">
+          <span class="tl-year">1494</span>
+          <h4>Publicación de la Summa de Arithmetica</h4>
+          <p>Se imprime en Venecia su enciclopedia matemática, que incluye el primer tratado impreso sobre contabilidad por partida doble.</p>
+        </div>
+        <div class="tl-item pacioli">
+          <span class="tl-year">1509</span>
+          <h4>Publicación de De Divina Proportione</h4>
+          <p>Obra dedicada a la razón áurea (Φ) y los sólidos platónicos, ilustrada con los célebres poliedros de Leonardo da Vinci.</p>
+        </div>
+        <div class="tl-item pacioli">
+          <span class="tl-year">1517</span>
+          <h4>Fallecimiento de Luca Pacioli</h4>
+          <p>Muere en Sansepolcro dejando un legado fundamental para las finanzas, el arte y el álgebra renacentista.</p>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-2')">← Biografías</button>
+        <button class="btn-primary" onclick="switchTab('tab-4')">Siguiente: Aportes y Laboratorio →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 4: APORTES Y LABORATORIO INTERACTIVO -->
+    <section id="tab-4" class="tab-panel">
+      <div class="panel-header">
+        <h2>4. Aportes Matemáticos y Ejercicios Interactivos</h2>
+        <p>Observa sus grabados originales y manipula los simuladores en tiempo real.</p>
+      </div>
+
+      <div class="cards-2col">
+        <!-- Simulador Oresme -->
+        <article class="card">
+          <div class="card-badge amber">Nicole Oresme · Cinemática y Coordenadas</div>
+          <h3>Regla de Merton (Velocidad Media)</h3>
+          <p>Oresme demostró que la distancia recorrida por un cuerpo con aceleración uniforme es igual a la de un cuerpo con velocidad constante igual a la mitad de la velocidad final, comparando el <strong>área de un triángulo</strong> con la de un <strong>rectángulo</strong>.</p>
+
+          <figure class="artifact-fig">
+            <img
+              src="https://www.researchgate.net/publication/227369016/figure/fig9/AS:668680312602633@1536437218413/A-page-from-Oresmes-Tractatus-De-Latitudinibus-Formarum-showing-several-graphical-forms.png"
+              alt="Diagramas de latitud de las formas en el tratado de Nicole Oresme"
+            />
+            <figcaption>Grabado histórico de <em>De latitudinibus formarum</em> con las configuraciones geométricas de Oresme.</figcaption>
+          </figure>
+
+          <div class="lab-box">
+            <label>Tiempo (t): <strong id="valTime">6</strong> s</label>
+            <input type="range" id="rangeTime" min="2" max="12" value="6" oninput="updateOresmeLab()" />
+
+            <label>Velocidad Final (v<sub>f</sub>): <strong id="valVel">10</strong> m/s</label>
+            <input type="range" id="rangeVel" min="4" max="20" step="2" value="10" oninput="updateOresmeLab()" />
+
+            <canvas id="oresmeCanvas" width="360" height="200"></canvas>
+
+            <div class="formula-result" id="oresmeResult"></div>
+          </div>
+        </article>
+
+        <!-- Simulador Pacioli -->
+        <article class="card">
+          <div class="card-badge gold">Luca Pacioli · Geometría y Partida Doble</div>
+          <h3>La Divina Proporción (Número Áureo Φ)</h3>
+          <p>Pacioli estudió la división de un segmento en media y extrema razón: el todo es a la parte mayor como la parte mayor es a la menor (<strong>(a + b) / a = a / b = Φ ≈ 1.618</strong>).</p>
+
+          <figure class="artifact-fig">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/18/Leonardo_polyhedra.png"
+              alt="Rombicuboctaedro dibujado por Leonardo da Vinci para De Divina Proportione de Luca Pacioli"
+            />
+            <figcaption>Rombicuboctaedro ilustrado por Leonardo da Vinci para <em>De Divina Proportione</em> (1509).</figcaption>
+          </figure>
+
+          <div class="lab-box">
+            <label>Longitud del segmento mayor (a): <strong id="valA">100</strong> cm</label>
+            <input type="range" id="rangeA" min="20" max="250" value="100" oninput="updatePacioliLab()" />
+
+            <div class="golden-bar-wrap">
+              <div id="barMajor" class="bar-major">a</div>
+              <div id="barMinor" class="bar-minor">b</div>
+            </div>
+
+            <div class="formula-result" id="pacioliResult"></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-3')">← Línea de Tiempo</button>
+        <button class="btn-primary" onclick="switchTab('tab-5')">Siguiente: Impacto Hoy →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 5: IMPACTO HOY -->
+    <section id="tab-5" class="tab-panel">
+      <div class="panel-header">
+        <h2>5. Impacto en la Ciencia, Tecnología y Vida Diaria Hoy</h2>
+        <p>Cómo las ideas de los siglos XIV y XV siguen operando en el mundo digital moderno.</p>
+      </div>
+
+      <div class="cards-2col">
+        <div class="card">
+          <h3>Legado de Nicole Oresme en el Siglo XXI</h3>
+          <ul class="clean-list">
+            <li><strong>Ciencia de Datos y Gráficos:</strong> Cada vez que ves una gráfica de bolsa, temperatura o rendimiento en Excel o Python, usas la representación cartesiana precursora de Oresme.</li>
+            <li><strong>Cálculo Integral y Física:</strong> Calcular distancias mediante el área bajo una curva de velocidad-tiempo es la base intuitiva de la integral definida.</li>
+            <li><strong>Series Infinitas:</strong> Demostró la divergencia de la serie armónica (<strong>∑ 1/n = ∞</strong>), clave hoy en análisis de algoritmos y complejidad computacional.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Legado de Luca Pacioli en el Siglo XXI</h3>
+          <ul class="clean-list">
+            <li><strong>Software Financiero y ERP:</strong> La partida doble (<em>Debe = Haber</em>) es el motor lógico de sistemas contables globales, bancos y libros mayores distribuidos (Blockchain).</li>
+            <li><strong>Diseño UI/UX y Arquitectura:</strong> La proporción áurea (<strong>Φ</strong>) se emplea en retículas web, tipografía responsiva, logotipos y composición fotográfica.</li>
+            <li><strong>Modelado 3D y Videojuegos:</strong> Los poliedros regulares y truncados estudiados en <em>De divina proportione</em> son mallas geométricas fundamentales en gráficos por computadora.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-4')">← Aportes y Laboratorio</button>
+        <button class="btn-primary" onclick="switchTab('tab-6')">Siguiente: Podcast IA →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 6: PODCAST -->
+    <section id="tab-6" class="tab-panel">
+      <div class="panel-header">
+        <h2>6. Podcast: "De la Curva al Balance" (Episodio 3–4 min)</h2>
+        <p>Guion narrado interactivo con síntesis de voz en español y texto sincronizado.</p>
+      </div>
+
+      <div class="card podcast-card">
+        <div class="podcast-controls">
+          <button class="btn-primary" id="playPodcastBtn" onclick="togglePodcast()">▶ Reproducir Episodio</button>
+          <button class="btn-secondary" onclick="stopPodcast()">■ Detener</button>
+          <span class="podcast-status" id="podcastStatus">Listo para reproducir (Duración aprox. 3:30 min)</span>
+        </div>
+
+        <div class="equalizer" id="equalizer" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="script-box" id="podcastScript">
+          <p data-line="0"><strong>[Intro]:</strong> Bienvenidos a <em>Mentes del Número</em>. Hoy viajamos entre la Francia medieval y la Italia renacentista para descubrir cómo Nicole Oresme y Luca Pacioli cambiaron nuestra forma de ver el mundo.</p>
+          <p data-line="1"><strong>[Nicole Oresme]:</strong> Hacia 1350, en París, Nicole Oresme se preguntó cómo dibujar algo invisible: el cambio de velocidad de un objeto. Trazó una línea horizontal para el tiempo y barras verticales para la intensidad, inventando el antepasado directo de nuestros gráficos de coordenadas.</p>
+          <p data-line="2"><strong>[Conexión]:</strong> Con ese dibujo demostró que el área de un triángulo de aceleración equivale exactamente a un rectángulo de velocidad media, anticipando por más de dos siglos a Galileo Galilei.</p>
+          <p data-line="3"><strong>[Luca Pacioli]:</strong> Un siglo después, en Italia, el fraile Luca Pacioli unió el rigor matemático con el arte y los negocios. En 1494 publicó su famosa <em>Summa</em>, estandarizando la partida doble: ningún registro contable cierra si el debe no iguala al haber.</p>
+          <p data-line="4"><strong>[Divina Proporción]:</strong> Además, junto a su amigo Leonardo da Vinci, exploró la proporción áurea, demostrando cómo las matemáticas conectan la geometría de los poliedros con la armonía estética.</p>
+          <p data-line="5"><strong>[Cierre]:</strong> Cada gráfico en tu pantalla y cada transacción bancaria actual llevan la firma silenciosa de Oresme y Pacioli. ¡Gracias por escuchar!</p>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-5')">← Impacto Hoy</button>
+        <button class="btn-primary" onclick="switchTab('tab-7')">Siguiente: Juegos Interactivos →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 7: JUEGOS INTERACTIVOS -->
+    <section id="tab-7" class="tab-panel">
+      <div class="panel-header">
+        <h2>7. Zona de Juegos Interactivos</h2>
+        <p>Pon a prueba lo aprendido con el reto de calibración áurea y la trivia rápida.</p>
+      </div>
+
+      <div class="cards-2col">
+        <!-- Mini-juego 1: Calibrador Áureo -->
+        <article class="card">
+          <h3>Reto 1: Calibrador de la Divina Proporción (Φ)</h3>
+          <p>Mueve el divisor hasta lograr la proporción áurea exacta (<strong>Φ ≈ 1.618</strong>).</p>
+          <div class="lab-box">
+            <input type="range" id="phiGameSlider" min="110" max="250" value="125" oninput="checkPhiGame()" />
+            <p>Tu razón actual: <strong id="phiUserRatio">1.250</strong> (Meta: <strong>1.618</strong>)</p>
+            <div id="phiGameFeedback" class="feedback-badge">Ajusta el deslizador para acercarte a Φ</div>
+          </div>
+        </article>
+
+        <!-- Mini-juego 2: Trivia -->
+        <article class="card">
+          <h3>Reto 2: Trivia Oresme & Pacioli</h3>
+          <div id="quizBox">
+            <p class="quiz-progress" id="quizProgress">Pregunta 1 de 5</p>
+            <h4 id="quizQuestion">Cargando pregunta...</h4>
+            <div id="quizOptions" class="quiz-options"></div>
+            <p id="quizFeedback" class="quiz-feedback"></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-6')">← Podcast IA</button>
+        <button class="btn-primary" onclick="switchTab('tab-8')">Siguiente: Datos Curiosos →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 8: DATOS CURIOSOS -->
+    <section id="tab-8" class="tab-panel">
+      <div class="panel-header">
+        <h2>8. Datos Curiosos (Haz clic en cada tarjeta para voltearla)</h2>
+        <p>Anécdotas poco conocidas sobre ambos personajes.</p>
+      </div>
+
+      <div class="cards-2col">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <span class="pill">Curiosidad #1 · Oresme</span>
+              <h3>Inventor de palabras científicas en francés</h3>
+              <p>Toca para descubrir →</p>
+            </div>
+            <div class="flip-back">
+              <p>Al traducir a Aristóteles para el rey Carlos V, Oresme introdujo más de <strong>450 palabras nuevas</strong> al idioma francés que hoy son cotidianas, como <em>calcul, aristocratie, démocratie</em> y <em>économique</em>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <span class="pill">Curiosidad #2 · Oresme</span>
+              <h3>Pionero de los exponentes fraccionarios</h3>
+              <p>Toca para descubrir →</p>
+            </div>
+            <div class="flip-back">
+              <p>En su obra <em>Algorismus proportionum</em>, Oresme fue el primero en trabajar con potencias fraccionarias (como <strong>2<sup>1/2</sup></strong> o <strong>4<sup>3/2</sup></strong>), adelantándose siglos a la notación algebraica moderna.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <span class="pill">Curiosidad #3 · Pacioli</span>
+              <h3>El libro secreto de trucos matemáticos y ajedrez</h3>
+              <p>Toca para descubrir →</p>
+            </div>
+            <div class="flip-back">
+              <p>Pacioli escribió <em>De viribus quantitatis</em>, una recopilación de acertijos matemáticos, trucos de magia con números y problemas de ajedrez (<em>De ludo scachorum</em>) ilustrados también por Leonardo da Vinci.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <span class="pill">Curiosidad #4 · Pacioli</span>
+              <h3>No inventó la partida doble, pero la inmortalizó</h3>
+              <p>Toca para descubrir →</p>
+            </div>
+            <div class="flip-back">
+              <p>Los mercaderes venecianos ya usaban la partida doble de forma empírica, pero Pacioli fue el primero en codificarla e imprimirla en 1494 para que cualquier comerciante pudiera aprenderla.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-7')">← Juegos</button>
+        <button class="btn-primary" onclick="switchTab('tab-9')">Siguiente: Fuentes APA →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 9: FUENTES APA -->
+    <section id="tab-9" class="tab-panel">
+      <div class="panel-header">
+        <h2>9. Fuentes Bibliográficas Verificadas (Formato APA 7.ª ed.)</h2>
+        <p>Referencias académicas consultadas para validar fechas, obras y demostraciones.</p>
+      </div>
+
+      <div class="card">
+        <ol class="apa-list">
+          <li>Boyer, C. B., & Merzbach, U. C. (2011). <em>A history of mathematics</em> (3rd ed.). John Wiley & Sons.</li>
+          <li>Clagett, M. (1968). <em>Nicole Oresme and the medieval geometry of qualities and motions</em>. University of Wisconsin Press.</li>
+          <li>Gleeson-White, J. (2012). <em>Double entry: How the merchants of Venice created modern finance</em>. W. W. Norton & Company.</li>
+          <li>Katz, V. J. (2009). <em>A history of mathematics: An introduction</em> (3rd ed.). Addison-Wesley.</li>
+          <li>Livio, M. (2003). <em>The golden ratio: The story of phi, the world's most astonishing number</em>. Broadway Books.</li>
+          <li>O'Connor, J. J., & Robertson, E. F. (2000). <em>Nicole Oresme & Luca Pacioli</em>. MacTutor History of Mathematics Archive, University of St Andrews. https://mathshistory.st-andrews.ac.uk/</li>
+        </ol>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-8')">← Datos Curiosos</button>
+        <button class="btn-primary" onclick="switchTab('tab-10')">Siguiente: Uso de IA →</button>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 10: USO RESPONSABLE DE IA -->
+    <section id="tab-10" class="tab-panel">
+      <div class="panel-header">
+        <h2>10. Declaración de Uso Responsable de Inteligencia Artificial</h2>
+        <p>Transparencia sobre herramientas empleadas, verificación histórica y correcciones realizadas.</p>
+      </div>
+
+      <div class="card">
+        <div class="table-responsive">
+          <table class="ia-table">
+            <thead>
+              <tr>
+                <th>Componente del Proyecto</th>
+                <th>Herramienta IA</th>
+                <th>Rol y Verificación Crítica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Investigación y Síntesis Histórica</td>
+                <td>Gemini</td>
+                <td>Estructuración inicial de biografías y aportes. Se contrastaron fechas (como 1494 para la <em>Summa</em> y 1377 para el obispado de Lisieux) con el archivo MacTutor y Boyer (2011).</td>
+              </tr>
+              <tr>
+                <td>Desarrollo Web e Interactividad</td>
+                <td>Gemini (HTML/CSS/JS)</td>
+                <td>Generación de la interfaz multi-pestaña responsiva, canvas geométrico de Oresme y calculadora de proporción áurea.</td>
+              </tr>
+              <tr>
+                <td>Guion y Narración de Podcast</td>
+                <td>Gemini + Web Speech API</td>
+                <td>Redacción del guion divulgativo y reproducción de audio sintetizado en español con resaltado sincronizado.</td>
+              </tr>
+              <tr>
+                <td>Imágenes e Ilustraciones Históricas</td>
+                <td>Wikimedia Commons / Archivos Históricos</td>
+                <td>Retratos históricos verificados (miniatura medieval de Nicole Oresme, óleo de Luca Pacioli de 1495 por Jacopo de' Barbari y grabado del rombicuboctaedro de Leonardo da Vinci).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-secondary" onclick="switchTab('tab-9')">← Fuentes APA</button>
+        <button class="btn-primary" onclick="switchTab('tab-1')">Volver al Inicio ↺</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Widget Flotante: Entrevista Simulada con Oresme o Pacioli -->
+  <div class="chat-widget">
+    <button class="chat-toggle" onclick="toggleChat()">💬 Hablar con Oresme / Pacioli</button>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <select id="personaSelect" onchange="resetChat()">
+          <option value="oresme">Nicole Oresme (1320–1382)</option>
+          <option value="pacioli">Luca Pacioli (1447–1517)</option>
+        </select>
+        <button onclick="toggleChat()">✕</button>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-quick">
+        <button onclick="askBot('aporte')">¿Cuál fue tu mayor aporte?</button>
+        <button onclick="askBot('obra')">¿Cuál es tu libro famoso?</button>
+        <button onclick="askBot('hoy')">¿Cómo se usa hoy?</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
